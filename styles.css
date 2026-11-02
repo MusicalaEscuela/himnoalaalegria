@@ -1,0 +1,240 @@
+/* Paleta Musicala */
+:root{
+  --azul-mozart:#0C41C4;
+  --violeta-beethoven:#680DBF;
+  --violeta-vivaldi:#5729FF;
+  --magenta-brahms:#CE0071;
+  --blanco-debussy:#F9F9F9;
+  --gris-haydn:#E6E8E8;
+
+  --tinta:#220a63;
+  --tinta-suave:#5a5f7e;
+  --borde:#e6e8e8;
+  --card:#ffffff;
+
+  /* Roles en la canción */
+  --do:var(--magenta-brahms);   --do-soft:#fde7f2;
+  --sol:var(--azul-mozart);     --sol-soft:#e4ebfb;
+  --melodia:var(--violeta-vivaldi); --melodia-soft:#eeeaff;
+  --ok:#0f9d58; --ok-soft:#e3f6ec;
+  --error:#d93025; --error-soft:#fdecea;
+
+  --radius:24px;
+  --shadow:0 18px 50px rgba(34,10,99,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--tinta);
+  background:
+    radial-gradient(700px 360px at 0% -5%, rgba(87,41,255,.10), transparent 70%),
+    radial-gradient(600px 340px at 100% 0%, rgba(206,0,113,.07), transparent 70%),
+    var(--blanco-debussy);
+  min-height:100vh;
+  line-height:1.5;
+}
+button,input,output{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+kbd{display:inline-block;min-width:1.5em;padding:0 .35em;border:1px solid var(--borde);border-bottom-width:2px;border-radius:6px;background:#fff;font-size:.8em;font-weight:700;text-align:center}
+
+/* ---------- Barra superior ---------- */
+.topbar{
+  position:sticky;top:0;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding:.7rem clamp(1rem,4vw,3rem);
+  background:linear-gradient(90deg,var(--azul-mozart),var(--violeta-vivaldi));
+  color:#fff;
+}
+.brand{display:flex;align-items:center;gap:.75rem}
+.brand img{width:44px;height:44px;object-fit:contain;border-radius:12px;background:#fff;padding:3px}
+.brand span{display:grid;line-height:1.15}
+.brand b{font-size:1.05rem}
+.brand small{opacity:.85;font-weight:600;font-size:.78rem}
+.mode-switch{display:flex;gap:.25rem;padding:.25rem;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3)}
+.mode-btn{padding:.5rem 1rem;border-radius:999px;font-weight:800;font-size:.9rem;color:#fff}
+.mode-btn.active{background:#fff;color:var(--violeta-vivaldi)}
+
+main{width:min(1080px,calc(100% - 2rem));margin:0 auto;padding:1.25rem 0 3rem;display:grid;gap:1.1rem}
+.card{background:var(--card);border:1px solid var(--borde);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(1rem,3vw,1.8rem)}
+.kicker{display:inline-block;font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--violeta-beethoven)}
+h1,h2{margin:.2rem 0 .4rem;line-height:1.1}
+h1{font-size:clamp(1.5rem,3.6vw,2.2rem)}
+h2{font-size:clamp(1.25rem,2.6vw,1.6rem)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.section-head p{margin:0;color:var(--tinta-suave);max-width:46ch}
+
+/* ---------- Botones ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.3rem;border-radius:999px;font-weight:800;transition:transform .12s, box-shadow .12s, opacity .12s}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn.primary{background:var(--violeta-vivaldi);color:#fff;box-shadow:0 10px 24px rgba(87,41,255,.28)}
+.btn.secondary{background:var(--melodia-soft);color:var(--violeta-beethoven)}
+.btn.accent{background:var(--magenta-brahms);color:#fff;box-shadow:0 10px 24px rgba(206,0,113,.22)}
+.btn.stop{background:var(--gris-haydn);color:var(--tinta);padding:.85rem 1.1rem}
+.btn.light{background:#fff;color:var(--violeta-vivaldi)}
+.btn.ghost-light{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.btn.running{outline:3px solid rgba(87,41,255,.3);outline-offset:2px}
+.icon-btn{width:46px;height:46px;border-radius:50%;background:var(--blanco-debussy);border:1px solid var(--borde);font-size:1.6rem;font-weight:700;line-height:1;color:var(--violeta-vivaldi);flex:none}
+.icon-btn:hover{background:var(--melodia-soft)}
+.link-btn{margin-top:1rem;color:var(--tinta-suave);text-decoration:underline;font-size:.85rem}
+
+/* ---------- Ruta guiada ---------- */
+.guided{
+  border-radius:var(--radius);padding:clamp(1.1rem,3vw,1.8rem);
+  background:linear-gradient(120deg,var(--violeta-beethoven),var(--violeta-vivaldi) 55%,var(--azul-mozart));
+  color:#fff;box-shadow:0 18px 50px rgba(87,41,255,.25);
+  display:grid;gap:1rem;
+}
+.guided .kicker{color:rgba(255,255,255,.8)}
+.guided p{margin:0;max-width:65ch;color:rgba(255,255,255,.93)}
+.guided-goal{margin-top:.8rem !important;padding:.7rem 1rem;border-radius:14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);font-weight:700}
+.guided-goal::before{content:"🎯 "}
+.guided-progress{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem}
+.guided-progress button{padding:.45rem .3rem;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:.78rem;border:1px solid rgba(255,255,255,.22);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.guided-progress button.done{background:rgba(255,255,255,.38)}
+.guided-progress button.done::before{content:"✓ "}
+.guided-progress button.current{background:#fff;color:var(--violeta-vivaldi)}
+.guided-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+
+/* ---------- Selectores (práctica libre) ---------- */
+.selectors{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.segmented{display:flex;flex-wrap:wrap;gap:.25rem;padding:.25rem;border-radius:16px;background:var(--blanco-debussy);border:1px solid var(--borde)}
+.segmented button{padding:.5rem .85rem;border-radius:12px;font-weight:700;font-size:.88rem;color:var(--tinta-suave)}
+.segmented button.active{background:var(--violeta-vivaldi);color:#fff}
+
+/* Visibilidad según modo */
+body.mode-explore .guided{display:none}
+body.mode-guided .zone:not(.step-on){display:none}
+.step-off{display:none !important}
+
+/* ---------- Estudio ---------- */
+.studio{display:grid;gap:1rem}
+.studio-head{display:flex;align-items:center;gap:.8rem}
+.studio-title{flex:1;display:grid;justify-items:center;text-align:center;gap:.15rem}
+.studio-title b{font-size:1.15rem}
+.studio-title small{color:var(--tinta-suave);font-weight:600}
+.chord-badge{padding:.2rem .7rem;border-radius:999px;font-size:.78rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.chord-badge.do{background:var(--do-soft);color:var(--do)}
+.chord-badge.sol{background:var(--sol-soft);color:var(--sol)}
+.chord-badge.melody{background:var(--melodia-soft);color:var(--melodia)}
+
+.notes-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;min-height:96px}
+.note{
+  display:grid;justify-items:center;align-content:center;gap:.15rem;
+  min-width:72px;padding:.65rem .7rem;border-radius:18px;
+  background:var(--melodia-soft);border:2px solid transparent;
+  transition:transform .12s, background .12s, border-color .12s;
+}
+.note b{font-size:1.45rem;line-height:1.1}
+.note small{display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;background:#fff;font-weight:900;font-size:.85rem;color:var(--violeta-beethoven)}
+.note.chord-note{background:var(--do-soft)}
+.note.chord-note.sol{background:var(--sol-soft)}
+.note.sep{min-width:auto;padding:0 .2rem;background:none;color:var(--gris-haydn);font-size:1.4rem}
+.note.now{border-color:var(--violeta-vivaldi);background:#fff;transform:translateY(-4px);box-shadow:0 10px 24px rgba(87,41,255,.25)}
+.note.hit{background:var(--ok-soft);border-color:var(--ok)}
+.note.miss{animation:shake .3s;border-color:var(--error);background:var(--error-soft)}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.finger-hint{margin:-.4rem 0 0;text-align:center;color:var(--tinta-suave);font-size:.85rem}
+
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem}
+.feedback{
+  text-align:center;padding:.75rem 1rem;border-radius:14px;
+  background:var(--blanco-debussy);border:1px solid var(--borde);font-weight:600;min-height:3rem;
+}
+.feedback.good{background:var(--ok-soft);border-color:#b9e6cc;color:#0b6b3d}
+.feedback.bad{background:var(--error-soft);border-color:#f5c2bd;color:#a1231a}
+.feedback.count{background:var(--melodia-soft);color:var(--violeta-vivaldi);font-size:1.4rem;font-weight:900}
+
+.tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6rem 1rem}
+.tempo{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.tool-label{font-weight:800;font-size:.85rem;color:var(--tinta-suave)}
+.mini{width:34px;height:34px;border-radius:50%;background:var(--blanco-debussy);border:1px solid var(--borde);font-weight:900;font-size:1.1rem}
+.tempo output{min-width:4.2em;text-align:center;font-weight:900}
+.tempo output::after{content:" BPM";font-weight:600;font-size:.75rem;color:var(--tinta-suave)}
+.tempo-presets{display:flex;gap:.25rem}
+.tempo-presets button{padding:.35rem .7rem;border-radius:999px;font-size:.8rem;font-weight:700;border:1px solid var(--borde);color:var(--tinta-suave)}
+.tempo-presets button.active{border-color:var(--violeta-vivaldi);color:var(--violeta-vivaldi);background:var(--melodia-soft)}
+.toggle{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--borde);font-weight:700;font-size:.88rem;color:var(--tinta-suave);background:#fff;cursor:pointer}
+.toggle input{accent-color:var(--violeta-vivaldi);width:16px;height:16px}
+.toggle.mic[aria-pressed="true"]{background:var(--magenta-brahms);border-color:var(--magenta-brahms);color:#fff}
+.mic-status{margin:-.3rem 0 0;text-align:center;font-size:.85rem;color:var(--tinta-suave)}
+.mic-status b{color:var(--magenta-brahms);font-size:1.05rem}
+
+/* ---------- Piano ---------- */
+.piano-wrap{padding:.4rem 0 0}
+.piano{position:relative;display:flex;height:clamp(130px,22vw,190px);user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.key{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;padding-bottom:8px;font-size:clamp(.55rem,1.4vw,.75rem);font-weight:700}
+.white-key{flex:1;background:#fff;border:1px solid #d6d8e2;border-radius:0 0 10px 10px;color:#9a9db3;margin-right:-1px}
+.white-key.c-key{border-left-color:#b9bccb}
+.black-key{position:absolute;top:0;z-index:2;height:60%;background:#1d1640;border-radius:0 0 7px 7px;box-shadow:0 6px 12px rgba(0,0,0,.25)}
+.key .finger{display:none;place-items:center;width:1.5em;height:1.5em;border-radius:50%;background:#fff;color:var(--tinta);font-weight:900;font-size:1.05em;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.key .label{line-height:1}
+/* Teclas de la línea activa */
+.key.mark-melody{background:linear-gradient(180deg,#fff 30%,var(--melodia-soft));color:var(--violeta-vivaldi)}
+.key.mark-melody .finger{display:grid;background:var(--violeta-vivaldi);color:#fff}
+.key.mark-do .finger:not(:empty){display:grid;background:var(--do);color:#fff}
+.key.mark-sol .finger:not(:empty){display:grid;background:var(--sol);color:#fff}
+.key.mark-do{background:linear-gradient(180deg,#fff 30%,var(--do-soft));color:var(--do)}
+.key.mark-sol{background:linear-gradient(180deg,#fff 30%,var(--sol-soft));color:var(--sol)}
+.key.mark-melody.mark-do,.key.mark-melody.mark-sol{background:linear-gradient(180deg,var(--melodia-soft) 0 50%,var(--do-soft) 50%)}
+.key.mark-melody.mark-sol{background:linear-gradient(180deg,var(--melodia-soft) 0 50%,var(--sol-soft) 50%)}
+/* Sonando / esperada */
+.key.on-melody{background:var(--violeta-vivaldi)!important;color:#fff}
+.key.on-do{background:var(--do)!important;color:#fff}
+.key.on-sol{background:var(--sol)!important;color:#fff}
+.key.target{box-shadow:inset 0 0 0 4px var(--magenta-brahms);animation:pulse 1s infinite}
+.key.pressed{transform:translateY(2px)}
+@keyframes pulse{50%{box-shadow:inset 0 0 0 4px rgba(206,0,113,.25)}}
+.kbd-hint{margin:0;text-align:center;font-size:.8rem;color:var(--tinta-suave)}
+
+/* ---------- Mapa ---------- */
+.blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem}
+.block{border-radius:18px;padding:.8rem;border:1px solid var(--borde);background:var(--blanco-debussy);display:grid;gap:.45rem;align-content:start}
+.block h3{margin:0 0 .1rem;font-size:.95rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.line-pill{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.5rem;text-align:left;padding:.5rem .65rem;border-radius:12px;background:#fff;border:1px solid var(--borde);font-size:.85rem}
+.line-pill .num{font-weight:900;color:var(--tinta-suave)}
+.line-pill .txt{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.line-pill.active{border-color:var(--violeta-vivaldi);box-shadow:0 0 0 2px rgba(87,41,255,.2)}
+.line-pill.mastered{background:var(--ok-soft)}
+.dots{display:flex;gap:3px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--gris-haydn)}
+.dots i.on{background:var(--ok)}
+.tag{display:inline-block;padding:.1rem .55rem;border-radius:999px;font-size:.72rem;font-weight:900}
+.tag.do{background:var(--do-soft);color:var(--do)}
+.tag.sol{background:var(--sol-soft);color:var(--sol)}
+
+/* ---------- Tabla guía ---------- */
+.guide-table{display:grid;grid-template-columns:auto auto 1fr auto auto;border:1px solid var(--borde);border-radius:16px;overflow:auto}
+.guide-table > div{padding:.6rem .8rem;border-bottom:1px solid var(--borde);display:flex;align-items:center;gap:.3rem}
+.guide-head{background:var(--blanco-debussy);font-weight:900;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--tinta-suave)}
+.guide-table small{color:var(--tinta-suave)}
+.guide-table .notes{font-weight:700}
+
+/* ---------- Clase ---------- */
+.lesson{margin:0;padding:0;list-style:none;display:grid;gap:.6rem;counter-reset:s}
+.lesson li{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;align-items:start;padding:.8rem;border-radius:16px;background:var(--blanco-debussy);border:1px solid var(--borde);counter-increment:s}
+.lesson li::before{content:counter(s);display:grid;place-items:center;width:2rem;height:2rem;border-radius:10px;background:var(--melodia-soft);color:var(--violeta-vivaldi);font-weight:900}
+.lesson b{display:block}
+.lesson p{margin:.15rem 0 0;color:var(--tinta-suave);font-size:.9rem}
+.lesson .time{font-weight:800;color:var(--magenta-brahms);font-size:.85rem;white-space:nowrap}
+
+footer{text-align:center;color:var(--tinta-suave);padding:1rem 1rem 2rem;font-size:.85rem}
+
+@media (max-width:640px){
+  .topbar{justify-content:center}
+  .mode-switch{width:100%}
+  .mode-btn{flex:1}
+  .guided-progress button{font-size:.68rem}
+  .actions .btn{flex:1 1 40%}
+  .actions .btn.stop{flex:0 0 auto}
+  .actions{flex-wrap:nowrap}
+  .actions .btn{padding:.8rem .7rem;font-size:.9rem}
+  .note{min-width:56px;padding:.5rem}
+  .note b{font-size:1.15rem}
+  .guide-table{grid-template-columns:auto auto 1fr}
+  .guide-table .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

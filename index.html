@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Musicala | Himno a la alegría en piano</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="mode-guided">
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      <img src="logo.png" alt="Logo Musicala" />
+      <span><b>Himno a la alegría</b><small>Musicala · Piano Lab</small></span>
+    </a>
+    <div class="mode-switch" role="group" aria-label="Cambiar modo de uso">
+      <button class="mode-btn active" data-mode="guided">Paso a paso</button>
+      <button class="mode-btn" data-mode="explore">Práctica libre</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- 1. Ruta guiada: qué hacer ahora -->
+    <section class="guided" id="guiado" aria-label="Ruta guiada de práctica">
+      <div class="guided-progress" id="guidedProgress"></div>
+      <div class="guided-body">
+        <span class="kicker" id="guidedStepLabel">Paso 1 de 5</span>
+        <h1 id="guidedTitle">Ubica las 5 notas</h1>
+        <p id="guidedText"></p>
+        <p class="guided-goal" id="guidedGoal"></p>
+      </div>
+      <div class="guided-actions">
+        <button class="btn ghost-light" id="guidedPrev">← Anterior</button>
+        <button class="btn light" id="guidedNext">Siguiente paso →</button>
+      </div>
+    </section>
+
+    <!-- 2. Estudio: la línea activa, las acciones y el piano -->
+    <section class="studio card" id="estudio" aria-label="Estudio de práctica">
+      <div class="selectors">
+        <div class="segmented" id="handSeg" role="group" aria-label="Mano">
+          <button data-hand="right" class="active">Mano derecha</button>
+          <button data-hand="chord">Acorde izquierdo</button>
+          <button data-hand="both">Ambas manos</button>
+          <button data-hand="left-melody">Melodía con izquierda</button>
+        </div>
+        <div class="segmented" id="scopeSeg" role="group" aria-label="Alcance">
+          <button data-scope="line" class="active">Una línea</button>
+          <button data-scope="block">Bloque</button>
+          <button data-scope="song">Canción completa</button>
+        </div>
+      </div>
+
+      <div class="studio-head">
+        <button class="icon-btn" id="prevLine" aria-label="Línea anterior">‹</button>
+        <div class="studio-title">
+          <span class="chord-badge do" id="chordBadge">Acorde Do</span>
+          <b id="lineTitle">Línea 1 de 14</b>
+          <small id="lineMeta">Bloque A · Entrada de la melodía</small>
+        </div>
+        <button class="icon-btn" id="nextLine" aria-label="Línea siguiente">›</button>
+      </div>
+
+      <div class="notes-row" id="notesRow" aria-label="Notas de la línea"></div>
+      <p class="finger-hint" id="fingerHint">El número debajo de cada nota es el dedo.</p>
+
+      <div class="actions">
+        <button class="btn primary" id="btnListen"><span aria-hidden="true">▶</span> Escuchar</button>
+        <button class="btn secondary" id="btnAlong"><span aria-hidden="true">♪</span> Toca conmigo</button>
+        <button class="btn accent" id="btnChallenge"><span aria-hidden="true">✓</span> Reto: ¿te sale?</button>
+        <button class="btn stop" id="btnStop" aria-label="Detener">■</button>
+      </div>
+
+      <div class="feedback" id="feedback" role="status" aria-live="polite">Pulsa <b>Escuchar</b> para empezar.</div>
+
+      <div class="tools">
+        <div class="tempo">
+          <span class="tool-label">Tempo</span>
+          <button class="mini" id="tempoDown" aria-label="Más lento">−</button>
+          <output id="tempoValue">60</output>
+          <button class="mini" id="tempoUp" aria-label="Más rápido">+</button>
+          <div class="tempo-presets">
+            <button data-tempo="50">Lento</button>
+            <button data-tempo="72">Medio</button>
+            <button data-tempo="96">Original</button>
+          </div>
+        </div>
+        <label class="toggle"><input type="checkbox" id="optLoop" /> Repetir</label>
+        <label class="toggle"><input type="checkbox" id="optMetro" checked /> Metrónomo</label>
+        <button class="toggle mic" id="btnMic" aria-pressed="false">🎤 Escuchar mi piano</button>
+      </div>
+      <p class="mic-status" id="micStatus" hidden></p>
+
+      <div class="piano-wrap">
+        <div class="piano" id="piano" aria-label="Piano interactivo"></div>
+      </div>
+      <p class="kbd-hint">Teclado del computador: <kbd>A</kbd> Do · <kbd>S</kbd> Re · <kbd>D</kbd> Mi · <kbd>F</kbd> Fa · <kbd>G</kbd> Sol · <kbd>H</kbd> La · <kbd>J</kbd> Si &nbsp;·&nbsp; <kbd>←</kbd><kbd>→</kbd> cambiar línea · <kbd>Espacio</kbd> escuchar</p>
+    </section>
+
+    <!-- 3. Mapa de la canción con progreso -->
+    <section class="map card zone" data-zone="mapa" aria-label="Mapa de la canción">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Mapa de la canción</span>
+          <h2>Tu progreso por línea</h2>
+        </div>
+        <p>Cada punto es un reto superado sin errores. Tres puntos = línea dominada.</p>
+      </div>
+      <div class="blocks" id="blocks"></div>
+      <button class="link-btn" id="resetProgress">Reiniciar progreso</button>
+    </section>
+
+    <!-- 4. Material de consulta (solo en práctica libre) -->
+    <section class="card zone" data-zone="tabla" id="guia">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Guía Musicala</span>
+          <h2>Tabla completa</h2>
+        </div>
+        <p>La hoja original en formato tabla: acorde, notas y digitación de cada línea.</p>
+      </div>
+      <div class="guide-table" id="guideTable"></div>
+    </section>
+
+    <section class="card zone" data-zone="clase" id="clase">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Para el profe</span>
+          <h2>Clase de 20 minutos</h2>
+        </div>
+        <p>La misma ruta del modo paso a paso, con tiempos sugeridos.</p>
+      </div>
+      <ol class="lesson" id="lesson"></ol>
+    </section>
+  </main>
+
+  <footer>
+    <b>Musicala Piano Lab</b> · Himno a la alegría (L. v. Beethoven) · Guía inicial de piano
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
